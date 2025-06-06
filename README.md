@@ -1,0 +1,2 @@
+# aiscamchecker
+AI Scam Checker
