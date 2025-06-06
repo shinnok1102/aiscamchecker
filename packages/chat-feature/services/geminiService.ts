@@ -261,6 +261,6 @@ export const fileToText = (file: File): Promise<string> => {
     reader.onload = () => {
       resolve(reader.result as string);
     };
-    reader.onerror = (error) => reject(new Error(`Error reading text file: ${error}`)));
+    reader.onerror = (error) => reject(new Error(`Error reading text file: ${error}`));
   });
 };
