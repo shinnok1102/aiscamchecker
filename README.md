@@ -15,7 +15,7 @@ The Anti-Fraud Assistant is an AI-powered application designed to help users det
 - **Backend:** Node.js (assumed, will confirm in later steps)
 - **API:** Gemini API
 
-## Getting Started
+## Run Locally
 
 **Prerequisites:**
 
@@ -44,6 +44,40 @@ The Anti-Fraud Assistant is an AI-powered application designed to help users det
    npm run dev
    ```
    The application will be available at `http://localhost:3000` (or another port if specified).
+
+## Run with Docker Compose
+
+This is the recommended way to run the application for a consistent environment.
+
+**Prerequisites:**
+
+- Docker installed
+- Docker Compose installed
+
+**Steps:**
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/anti-fraud-assistant.git
+    cd anti-fraud-assistant
+    ```
+2.  **Create environment file:**
+    Create a `.env` file in the project root. This file is used by `docker-compose.yml` to supply environment variables to the application container.
+    Add your Gemini API key to the `.env` file:
+    ```env
+    GEMINI_API_KEY=your_api_key_here
+    ```
+    **Note:** The `GEMINI_API_KEY` is crucial for the AI-powered scam detection features to work.
+
+3.  **Build and run the container:**
+    From the project root, run:
+    ```bash
+    docker-compose up --build
+    ```
+    This command will build the Docker image (if it doesn't exist or if changes are detected) and then start the application container.
+
+4.  **Access the application:**
+    Open your web browser and navigate to `http://localhost:8080`.
 
 ## Contributing
 
