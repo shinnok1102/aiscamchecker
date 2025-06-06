@@ -13,9 +13,7 @@ services:
       # The application's vite.config.js is set up to read GEMINI_API_KEY
       # and make it available as process.env.GEMINI_API_KEY
       - GEMINI_API_KEY=${GEMINI_API_KEY}
-    volumes:
-      # For development, you might want to mount your source code
-      # For production, it's better to rely on the code baked into the image
+    # volumes:
       # Example for development (uncomment if needed, and ensure paths are correct):
       # - .:/app
       # - /app/node_modules # Exclude node_modules from being overwritten by the mount
