@@ -1,0 +1,10 @@
+{
+  "name": "Trợ lý chống lừa đảo",
+  "description": "Một trợ lý AI thông minh dạng chatbot giúp người dùng nhanh chóng kiểm tra và nhận diện các dấu hiệu lừa đảo qua văn bản và hình ảnh.",
+  "requestFramePermissions": [
+    "camera",
+    "display-capture",
+    "microphone"
+  ],
+  "prompt": ""
+}

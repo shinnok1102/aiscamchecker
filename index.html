@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trợ lý chống lừa đảo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D9488', // Teal
+              secondary: '#0369A1', // Sky Blue
+              accent: '#F97316', // Orange
+              neutral: '#4B5563', // Cool Gray
+            }
+          }
+        }
+      }
+    </script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> Removed GSI script -->
+  
+  <script src="/config.js"></script> <!-- Injected runtime configuration -->
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.1.0"
+  }
+}
+</script>
+<style>
+  body {
+    overscroll-behavior-y: contain; /* Prevents pull-to-refresh on mobile chat scroll */
+  }
+  /* .modal-overlay style removed as Modal.tsx handles its own z-index */
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 flex flex-col h-screen">
+    <div id="root" class="flex flex-col flex-grow h-full"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

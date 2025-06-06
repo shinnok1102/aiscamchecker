@@ -1,0 +1,60 @@
+{
+  "app": {
+    "title": "Anti-Scam Assistant",
+    "madeBy": "Made by The Outlaws",
+    "localeCode": "en-US"
+  },
+  "header": {
+    "mainTitle": "Anti-Scam Assistant",
+    "subtitle": "AI Scam Detection Assistant",
+    "startNewChat": "Start new chat",
+    "login": "Login",
+    "logout": "Logout",
+    "accountInfo": "Account Information",
+    "userMenuButton": "User account and settings",
+    "selectLanguage": "Select language",
+    "vietnamese": "Tiếng Việt (Vietnamese)",
+    "english": "English",
+    "profile": "My Profile",
+    "chatHistory": "Chat History"
+  },
+  "chat": {
+    "modal": {
+      "close": "Close modal"
+    },
+    "riskLevels": {
+        "VERY_HIGH": "VERY HIGH",
+        "HIGH": "HIGH",
+        "MEDIUM": "MEDIUM",
+        "LOW": "LOW",
+        "SAFE": "SAFE",
+        "UNKNOWN": "UNKNOWN"
+    }
+  },
+  "chatHistory": {
+    "panelTitle": "Chat History",
+    "modalTitle": "Chat History",
+    "noHistoryFound": "No recent conversations found.",
+    "loadButton": "Load",
+    "loadButtonAria": "Load conversation: {name}",
+    "deleteButtonAria": "Delete conversation: {name}",
+    "confirmDelete": "Are you sure you want to delete the conversation \"{name}\"?",
+    "lastActivity": "Last activity",
+    "newChatName": "New Chat ({time})",
+    "untitledChatName": "Chat ({time})",
+    "fileChatName": "{count} file(s) ({fileName})"
+  },
+  "errors": {
+      "errorTitle": "Error",
+      "errorPrefix": "Error:"
+  },
+  "gemini": {
+    "suggestionRetryClearer": "Try rephrasing your request or provide more specific details.",
+    "suggestionRetryLater": "Please try again later.",
+    "suggestionCheckInput": "Check your input and try again.",
+    "errorAIResponseFormatInvalidContent": "AI response appears to be JSON, but content doesn't match expected structure. Response: \"{responseText}\"",
+    "suggestionEnsureJsonFormatUser": "If this issue persists, the AI may not fully understand the request.",
+    "errorParseResponseGeneric": "Could not understand AI response, it might be malformed. Response: \"{responseText}\"",
+    "suggestionProvideMoreDetails": "Please provide more details or the actual content for analysis."
+  }
+}
