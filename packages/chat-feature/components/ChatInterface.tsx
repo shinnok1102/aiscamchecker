@@ -120,12 +120,14 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ authUser, conversationId 
 
   const handleFileSelection = async (selectedNativeFiles: File[]) => {
     if (selectedNativeFiles.length === 0) return;
+    setIsLoading(true); // <--- ADDED
     setError(null);
 
-    const newFilesProcessing: Promise<StagedFile | null>[] = selectedNativeFiles.map(async (file) => {
-      try {
-        if (file.size > 10 * 1024 * 1024) { 
-          throw new Error(t('chat.errorFileTooLarge', { fileName: file.name }));
+    try { // <--- ADDED
+      const newFilesProcessing: Promise<StagedFile | null>[] = selectedNativeFiles.map(async (file) => {
+        try {
+          if (file.size > 10 * 1024 * 1024) {
+            throw new Error(t('chat.errorFileTooLarge', { fileName: file.name }));
         }
         
         let base64Data: string | undefined = undefined;
@@ -169,7 +171,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ authUser, conversationId 
     if (successfullyProcessedFiles.length > 0) {
       setStagedFiles(prevStaged => [...prevStaged, ...successfullyProcessedFiles]);
     }
-  };
+  } finally { // <--- ADDED
+    setIsLoading(false); // <--- ADDED
+  }
+};
 
   const removeStagedFile = (previewUrlToRemove: string) => {
     setStagedFiles(prevStaged => {
