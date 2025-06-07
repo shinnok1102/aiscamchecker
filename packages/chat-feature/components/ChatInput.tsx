@@ -633,7 +633,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       let accumulatedFinalTranscriptInSession = ""; // Accumulates final results for this session
 
       speechRecognitionRef.current = new SpeechRecognitionAPI();
-      speechRecognitionRef.current.lang = language; 
+      speechRecognitionRef.current.lang = t('app.localeCode');
       speechRecognitionRef.current.interimResults = true;
       speechRecognitionRef.current.continuous = true;
 
