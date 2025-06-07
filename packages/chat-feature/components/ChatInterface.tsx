@@ -150,6 +150,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ authUser, conversationId 
           previewUrlData = '';
         } else if (fileType.startsWith('video/')) {
           base64Data = await fileToBase64(file);
+          if (base64Data === "opus;base64") {
+            console.error(`Invalid base64 data "opus;base64" for video file ${file.name}.`);
+            throw new Error(t('chat.errorInvalidVideoData', { fileName: file.name }));
+          }
           previewUrlData = '';
         }
          else {
