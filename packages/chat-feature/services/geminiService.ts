@@ -30,7 +30,7 @@ const getApiKey = (): string | undefined => {
       return keyFromWindow;
     }
     if (keyFromWindow && KNOWN_INVALID_PLACEHOLDERS.includes(keyFromWindow)) {
-        console.warn(`Gemini API Key from window.APP_CONFIG is a placeholder ('${keyFromWindow}'). Ensure it's correctly set in the .env file for Docker.`);
+        console.warn(`Gemini API Key from window.APP_CONFIG is a placeholder ('${keyFromWindow}'). Ensure it's correctly set as an environment variable for your Docker container or deployment environment, which then populates window.APP_CONFIG.`);
     }
   }
 
@@ -118,10 +118,11 @@ export const analyzeOrChat = async (
   t?: TFunction 
 ): Promise<AnalysisResult | { text: string; groundingSources?: { uri: string; title: string }[] }> => {
   
-  const currentT = t || ((key: string, vars?: object) => { 
+  const currentT = t || ((key: string, vars?: object) => {
+    console.warn(`[GeminiService] Warning: Translation function 't' not provided. Using fallback for key '${key}'. UI messages may not be localized.`);
     let tempKey = key;
     if (vars) {
-      for(const optKey in vars) {
+      for (const optKey in vars) {
         tempKey = tempKey.replace(new RegExp(`{${optKey}}`, 'g'), String(vars[optKey]));
       }
     }
@@ -253,6 +254,9 @@ export const fileToBase64 = (file: File): Promise<string> => {
 
 export const fileToText = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
+    // Note: The 4MB limit for text files is a default.
+    // Verify this against the Gemini API's current capabilities for text input size
+    // and the specific requirements of this application. Adjust if necessary.
     if (file.size > 4 * 1024 * 1024) { 
         return reject(new Error("Text file size is too large (max 4MB)."));
     }
