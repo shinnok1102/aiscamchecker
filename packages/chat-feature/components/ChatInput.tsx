@@ -629,11 +629,32 @@ const ChatInput: React.FC<ChatInputProps> = ({
       }
     } else {
       setError(null);
-      textBeforeCurrentVoiceInputRef.current = currentText; // Capture text before starting new session
-      let accumulatedFinalTranscriptInSession = ""; // Accumulates final results for this session
+      textBeforeCurrentVoiceInputRef.current = currentText;
+      let accumulatedFinalTranscriptInSession = "";
 
       speechRecognitionRef.current = new SpeechRecognitionAPI();
-      speechRecognitionRef.current.lang = t('app.localeCode');
+
+      const translatedLocaleCode = t('app.localeCode');
+      console.log(`[VoiceInput] Language from useTranslation(): ${language}, Translated localeCode from t('app.localeCode'): ${translatedLocaleCode}`);
+
+      let sroLangToSet = translatedLocaleCode; // sroLangToSet for Speech Recognition Object Language
+
+      if (!sroLangToSet || typeof sroLangToSet !== 'string' || sroLangToSet.length < 2 || sroLangToSet === 'app.localeCode') {
+        // Fallback if t('app.localeCode') is missing, empty, or returns the key itself.
+        console.warn(`[VoiceInput] t('app.localeCode') returned invalid or key: '${sroLangToSet}'. Falling back based on 'language' variable.`);
+        if (language === 'en') {
+          sroLangToSet = 'en-US';
+        } else if (language === 'vi') {
+          sroLangToSet = 'vi-VN';
+        } else {
+          sroLangToSet = 'en-US'; // Default fallback if language is unknown
+          console.warn(`[VoiceInput] Unknown 'language' ("${language}"), defaulting SpeechRecognition.lang to 'en-US'.`);
+        }
+      }
+
+      console.log(`[VoiceInput] Setting SpeechRecognition.lang to: ${sroLangToSet}`);
+      speechRecognitionRef.current.lang = sroLangToSet;
+
       speechRecognitionRef.current.interimResults = true;
       speechRecognitionRef.current.continuous = true;
 
